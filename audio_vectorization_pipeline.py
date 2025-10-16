@@ -11,15 +11,19 @@ import time
 # ----------------------------
 BASE_DIR = "audio_speech"
 LABELS_CSV = "ravdess_labels.csv"
-N_MFCC = 13
+SR = 44100
+N_MFCC = 30 # 13
+N_FFT = 2048
+HOP_LENGTH = 512
+WINDOW_TYPE = "hann"
 SAVE_TO_DISK = True
 TEST_SIZE = 0.15   # 15% test
 VAL_SIZE = 0.15    # 15% validation (relative to total)
-WINDOW_SIZE = 25/1000   # 25ms (change to test different settings)
-STEP_SIZE = 10/1000     # 10ms (change as test different settings)
+#WINDOW_SIZE = 25/1000   # 25ms (change to test different settings)
+#STEP_SIZE = 10/1000     # 10ms (change as test different settings)
 EXTRACT_TEST_SET = True    # whether test set is needed
 SEED = 42
-OUTPUT_DIR = "datasets"
+OUTPUT_DIR = "datasets_new_params"
 
 # Create output folder if doesn't already exist
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -62,7 +66,7 @@ print(f"Split sizes: train={len(train_files)}, val={len(val_files)}, test={len(t
 # ----------------------------
 # FEATURE EXTRACTION FUNCTION
 # ----------------------------
-def extract_features(file_list, base_dir=BASE_DIR, n_mfcc=N_MFCC):
+def extract_features(file_list, base_dir=BASE_DIR):
     mfcc_features = []   # Classical ML
     mfcc_sequences = []  # Deep Learning
     labels = []
@@ -75,13 +79,18 @@ def extract_features(file_list, base_dir=BASE_DIR, n_mfcc=N_MFCC):
         file_path = os.path.join(base_dir, actor[0], file)
 
         # Load audio
-        y, sr = librosa.load(file_path, sr=None)
+        #y, sr = librosa.load(file_path, sr=None)
+        y, sr = librosa.load(file_path, sr=SR, res_type='kaiser_fast')
 
         # Extract MFCCs
         mfcc = librosa.feature.mfcc(
-            y=y, sr=sr, n_mfcc=n_mfcc,
-            n_fft=int(WINDOW_SIZE*sr),    # 25ms window 
-            hop_length=int(STEP_SIZE*sr) # 10ms step 
+            y=y, 
+            sr=sr, 
+            n_mfcc=N_MFCC,
+            n_fft=N_FFT, #int(WINDOW_SIZE*sr),    # 25ms window 
+            hop_length=HOP_LENGTH, #int(STEP_SIZE*sr), # 10ms step 
+            win_length=N_FFT,
+            window=WINDOW_TYPE
         )
 
         # Compute delta and double-delta 

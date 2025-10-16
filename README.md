@@ -5,13 +5,13 @@ MH4510 (Statistical Learning and Data Mining)
 
 # Project overview
 
-This project aims to apply classical ML methods (Logistic Regression / SVMs / Random Forest) as well as more advanced methods (CNNs / RNNs) to develop a model that is able to classify voice recordings based on their emotion.
+This project aims to apply classical ML methods (such as Logistic Regression / SVMs / Random Forest) as well as Deep Learning methods like Neural Networks and Transformers to develop a model that is able to classify voice recordings based on their emotion.
 
-The data used is the RAVDEES obtained from zenodo. The audio were recorded by professional actors, vocalizing the same 2 statements in multiple different ways (different emotions, emotional intensity).
+The audio speech files from the RAVDESS dataset is used (from zenodo). The audio were recorded by professional actors, vocalizing the same 2 statements in multiple different ways (different emotions, emotional intensity).
 
 # Reference
 
-Only audio files used from - https://zenodo.org/record/1188976
+Only audio (speech) files used - data obtained from https://zenodo.org/record/1188976
 
 # .gitignore
 
