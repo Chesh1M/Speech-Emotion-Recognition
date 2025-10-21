@@ -9,21 +9,24 @@ import time
 # ----------------------------
 # PARAMETERS
 # ----------------------------
-BASE_DIR = "audio_speech"
-LABELS_CSV = "ravdess_labels.csv"
+# BASE_DIR = "audio_speech"
+# LABELS_CSV = "ravdess_labels.csv"
+CREMA = 'crema_d_labels.csv'
+RAVDESS = 'ravdess_labels.csv'
+TESS = 'tess_labels.csv'
 SR = 44100
 N_MFCC = 30 # 13
 N_FFT = 2048
 HOP_LENGTH = 512
 WINDOW_TYPE = "hann"
 SAVE_TO_DISK = True
-TEST_SIZE = 0.15   # 15% test
-VAL_SIZE = 0.15    # 15% validation (relative to total)
+TEST_SIZE = 0.2   # 15% test
+VAL_SIZE = 0.2    # 15% validation (relative to total)
 #WINDOW_SIZE = 25/1000   # 25ms (change to test different settings)
 #STEP_SIZE = 10/1000     # 10ms (change as test different settings)
 EXTRACT_TEST_SET = True    # whether test set is needed
 SEED = 42
-OUTPUT_DIR = "datasets_new_params"
+OUTPUT_DIR = "datasets_combined_ravdess_crema_tess"
 
 # Create output folder if doesn't already exist
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -32,55 +35,49 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 start_time = time.time()
 
 # ----------------------------
-# LOAD LABELS
+# LOAD DATASETS
 # ----------------------------
-labels_df = pd.read_csv(LABELS_CSV)
+crema_data = pd.read_csv(CREMA)
+ravdess_data = pd.read_csv(RAVDESS)
+tess_data = pd.read_csv(TESS)
+df = pd.concat([ravdess_data, crema_data, tess_data], join='inner')
 
 # ----------------------------
 # TRAIN/VAL/TEST SPLIT (file-level)
 # ----------------------------
-all_files = labels_df["file_name"].values
+all_files = df["file_path"].values
 
 # First split train+val vs test
 train_val_files, test_files = train_test_split(
     all_files, test_size=TEST_SIZE, random_state=SEED,
-    stratify=labels_df["Emotion"].values
+    stratify=df["Emotion"].values
 )
 
 # Then split train vs val
 train_files, val_files = train_test_split(
     train_val_files, test_size=VAL_SIZE/(1-TEST_SIZE), random_state=SEED,
-    stratify=labels_df.set_index("file_name").loc[train_val_files]["Emotion"].values
+    stratify=df.set_index("file_path").loc[train_val_files]["Emotion"].values
 )
 
 splits = {
     "train": train_files,
-    "val": val_files
+    "val": val_files,
+    "test": test_files
 }
-
-if EXTRACT_TEST_SET:
-    splits["test"] = test_files
 
 print(f"Split sizes: train={len(train_files)}, val={len(val_files)}, test={len(test_files)}")
 
 # ----------------------------
 # FEATURE EXTRACTION FUNCTION
 # ----------------------------
-def extract_features(file_list, base_dir=BASE_DIR):
+def extract_features(file_list):
     mfcc_features = []   # Classical ML
     mfcc_sequences = []  # Deep Learning
     labels = []
 
     for file in file_list:
-        # Find actor folder
-        actor = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d)) and file in os.listdir(os.path.join(base_dir, d))]
-        if not actor:
-            continue
-        file_path = os.path.join(base_dir, actor[0], file)
-
         # Load audio
-        #y, sr = librosa.load(file_path, sr=None)
-        y, sr = librosa.load(file_path, sr=SR, res_type='kaiser_fast')
+        y, sr = librosa.load(file, sr=SR, res_type='kaiser_fast')
 
         # Extract MFCCs
         mfcc = librosa.feature.mfcc(
@@ -108,7 +105,7 @@ def extract_features(file_list, base_dir=BASE_DIR):
         mfcc_sequences.append(mfcc_combined.T)
 
         # Label
-        emotion = labels_df.set_index("file_name").loc[file, "Emotion"]
+        emotion = df.set_index("file_path").loc[file, "Emotion"]
         labels.append(emotion)
 
     # Convert to arrays
