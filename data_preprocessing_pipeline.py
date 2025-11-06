@@ -60,7 +60,7 @@ splits = {
     "test": test_files
 }
 
-print(f"Split sizes: train={len(train_files)}, val={len(val_files)}, test={len(test_files)}")
+print(f"Split sizes: train={len(train_files)}, test={len(test_files)}")
 
 # ----------------------------
 # AUGMENTATION FUNCTIONS
