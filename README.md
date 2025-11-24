@@ -24,11 +24,10 @@ TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
 
 # Project Structure 📁
 
-```markdown
-project/
-│
-
 <details>
+```markdown
+<summary>project/</summary>
+│
 ├── audio*speech/ # All raw audio datasets used for training/testing
 │ │
 │ ├── CREMA*D/ # CREMA-D emotional speech dataset (actors, single-word sentences)
@@ -77,6 +76,7 @@ project/
 │
 └── data_preprocessing_pipeline.py # Main preprocessing script for MFCC extraction, # augmentation, normalization & dataset splitting
 ```
+</details>
 
 # Team members
 
