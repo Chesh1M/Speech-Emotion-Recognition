@@ -25,8 +25,8 @@ TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
 # Project Structure 📁
 
 <details>
-```markdown
 <summary>project/</summary>
+```markdown
 │
 ├── audio*speech/ # All raw audio datasets used for training/testing
 │ │
