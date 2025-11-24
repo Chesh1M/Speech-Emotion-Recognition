@@ -1,30 +1,44 @@
-# Course Title
+# 🎓 MH4510 — Statistical Learning and Data Mining
 
-Nanyang Technological University <br>
-MH4510 (Statistical Learning and Data Mining)
+### Nanyang Technological University (NTU)
 
-# Project overview
+# 🔍 Project overview
 
-This project investigates speech-based emotion recognition (SER) as a non-intrusive indicator of psychological well-being in older adults, forming the foundation for a future conversational screening assistant. Using three publicly available emotional-speech corpora (RAVDESS, CREMA-D, TESS), we benchmark classical models (Log Regression, SVM, XGBoost) and deep neural networks (CNN, BiLSTM, CNN-LSTM) using MFCC-based acoustic features.
+This project explores **Speech-based Emotion Recognition (SER)** as a non-intrusive indicator of **psychological well-being in older adults**. By leveraging 3 widely used emotional speech corpora — **RAVDESS**, **CREMA-D**, **TESS** — we benchmark:
 
-# Significance
+- 📊 **Classical ML Models:** Logistic Regression, SVM, XGBoost
+- 🤖 **Deep Learning Models:** CNN, BiLSTM, CNN-LSTM
+- 🎵 **Acoustic Features:** MFCCs + delta/delta-delta + ZCR + RMS Energy
 
-Singapore’s rapidly ageing population increases the need for scalable and proactive mental-health monitoring in elder-care settings. Early identification of emotional distress, particularly subsyndromal depression (SSD), is challenged by under-reporting and limited manpower. <br><br>
-Our findings demonstrate technical feasibility for deployment-oriented SER and establish a modelling benchmark to support future clinical adaptation using Singapore-based elderly speech.
+This serves as the technical foundation for the possible future development of a **conversational screening assistant** in elder-care settings.
 
-# Reference
+# ✨ Significance
 
-CREMA_D: https://github.com/CheyneyComputerScience/CREMA-D <br>
-RAVDESS: Only audio (speech) files used - data obtained from https://zenodo.org/record/1188976 <br>
-TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
+Singapore’s fast-ageing population increases the need for **scalable mental-health monitoring tools**.  
+Early detection of emotional distress (e.g., **Subsyndromal Depression, SSD**) is often hindered by:
 
-# .gitignore
+- ⛔ Under-reporting by seniors
+- 👩‍⚕️ Limited healthcare manpower
+- 🗣️ Subtle emotional expression patterns
+
+Our project demonstrates the technical feasibility of SER for deployment-oriented screening, and provides a benchmark for **future adaptation to Singapore-based elderly speech data**.
+
+📄 **Full Report:**  
+👉 [Click here to view the full project report (PDF)](./MH4510_Report_Team_Winners.pdf)
+
+# 📚 Reference Datasets
+
+- **CREMA-D:** https://github.com/CheyneyComputerScience/CREMA-D
+- **RAVDESS:** (speech only) https://zenodo.org/record/1188976
+- **TESS:** https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
+
+# 🛑 .gitignore
 
 - Audio files
 - venv
 - npy files
 
-# Project Structure 📁
+# 📁 Project Structure
 
 ```markdown
 project/
@@ -78,7 +92,7 @@ project/
 └── data_preprocessing_pipeline.py # Main preprocessing script for MFCC extraction, # augmentation, normalization & dataset splitting
 ```
 
-# Team members
+# 👥 Team Members
 
 1. Alina Xia
 2. Chin Ao-Wen
