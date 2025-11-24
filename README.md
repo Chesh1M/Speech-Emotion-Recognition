@@ -22,11 +22,13 @@ TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
 
 - Audio files
 
-# Project Main Directory Tree
+# Project Structure 📁
 
-```plaintext
+```markdown
 project/
 │
+
+<details>
 ├── audio*speech/ # All raw audio datasets used for training/testing
 │ │
 │ ├── CREMA*D/ # CREMA-D emotional speech dataset (actors, single-word sentences)
