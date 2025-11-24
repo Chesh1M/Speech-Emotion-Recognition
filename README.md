@@ -9,13 +9,13 @@ This project investigates speech-based emotion recognition (SER) as a non-intrus
 
 # Significance
 
-Singapore’s rapidly ageing population increases the need for scalable and proactive mental-health monitoring in elder-care settings. Early identification of emotional distress, particularly subsyndromal depression (SSD), is challenged by under-reporting and limited manpower. <br>
+Singapore’s rapidly ageing population increases the need for scalable and proactive mental-health monitoring in elder-care settings. Early identification of emotional distress, particularly subsyndromal depression (SSD), is challenged by under-reporting and limited manpower. <br><br>
 Our findings demonstrate technical feasibility for deployment-oriented SER and establish a modelling benchmark to support future clinical adaptation using Singapore-based elderly speech.
 
 # Reference
 
-CREMA_D: https://github.com/CheyneyComputerScience/CREMA-D
-RAVDESS: Only audio (speech) files used - data obtained from https://zenodo.org/record/1188976
+CREMA_D: https://github.com/CheyneyComputerScience/CREMA-D <br>
+RAVDESS: Only audio (speech) files used - data obtained from https://zenodo.org/record/1188976 <br>
 TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
 
 # .gitignore
@@ -24,6 +24,7 @@ TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
 
 # Project Main Directory Tree
 
+```plaintext
 project/
 │
 ├── audio*speech/ # All raw audio datasets used for training/testing
@@ -54,10 +55,10 @@ project/
 │ │ │ ├── OAF_back_disgust.wav
 │ │ │ ├── OAF_bar_disgust.wav
 │ │ │ └── ...
-│ │ ├── OAF** (other emotions)
+│ │ ├── OAF\** (other emotions)
 │ │ ├── YAF*angry/ # Younger Adult Female (YAF) versions
 │ │ ├── YAF_disgust/
-│ │ └── YAF*\* (other emotions)
+│ │ └── YAF\*\* (other emotions)
 │
 ├── datasets_combined_no_augmented/ # Preprocessed MFCC/feature arrays (no augmentation)
 │ # contains .csv and .npy files like X_train, y_train for both traditional ML and DL models
@@ -73,6 +74,7 @@ project/
 ├── dataset.ipynb # Combined CREMA_D + RAVDESS + TESS dataset with EDA
 │
 └── data_preprocessing_pipeline.py # Main preprocessing script for MFCC extraction, # augmentation, normalization & dataset splitting
+```
 
 # Team members
 
