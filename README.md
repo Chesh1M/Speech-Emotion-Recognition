@@ -21,12 +21,13 @@ TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
 # .gitignore
 
 - Audio files
+- venv
+- npy files
 
 # Project Structure 📁
 
-<details>
-<summary>project/</summary>
 ```markdown
+project/
 │
 ├── audio*speech/ # All raw audio datasets used for training/testing
 │ │
@@ -76,7 +77,6 @@ TESS: https://www.kaggle.com/datasets/ejlok1/toronto-emotional-speech-set-tess
 │
 └── data_preprocessing_pipeline.py # Main preprocessing script for MFCC extraction, # augmentation, normalization & dataset splitting
 ```
-</details>
 
 # Team members
 
