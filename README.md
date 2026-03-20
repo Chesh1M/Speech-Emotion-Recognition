@@ -96,6 +96,6 @@ project/
 
 1. Alina Xia
 2. Chin Ao-Wen
-3. Dhalisa
+3. Dhaliisa Valen
 4. Elsen Ong
 5. Xin Yi
